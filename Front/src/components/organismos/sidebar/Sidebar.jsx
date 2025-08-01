@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import {ToggleTema} from "../ToogleTema"
-import { LinksArray, SecondarylinksArray } from "../../../utils/dataEstatica";
+import {
+  LinksArray,
+  SecondarylinksArray,
+  ToggleTema,
+} from "../../../index";
 import { v } from "../../../styles/variables";
 import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
