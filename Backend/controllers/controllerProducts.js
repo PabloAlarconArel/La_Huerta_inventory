@@ -38,4 +38,4 @@ const deleteProducts = async (req, res) =>{
     res.sendStatus(204);
 };
 
-module.exports ={getProducts,createProducts,getProduct,updateProducts,deleteProducts};
+module.exports = {getProducts,createProducts,getProduct,updateProducts,deleteProducts};

@@ -12,7 +12,10 @@ const login = async (req, res) => {
     if (!isMatch) return res.status(400).json({ msg: 'Contraseña incorrecta' });
 
     const token = await createAccessToken ({id:user._id});
-
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure:false, // Cambiar a true en producción
+      sameSite: "lax"}).json({ message: "Login correcto" });
     res.json({ token, user: { id: user._id, email: user.email } });
   } catch (err) {
     res.status(500).json({ msg: 'Error del servidor' });
@@ -53,10 +56,10 @@ const logout = async (req,res) => {
     res.cookie('token',"",{
       expires: new Date(0)}
     )
-    return res.SendStatus()
+    return res.SendStatus(200)
 };
 
-const profile = async (req,es)=>{
+const profile = async (req,res)=>{
   const userFound = await User.findById(req.user.id)
 
   if (!userFound) return res.status(400).json({message: "Usuario no encontrado"
