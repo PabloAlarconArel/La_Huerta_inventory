@@ -37,5 +37,22 @@ const deleteProducts = async (req, res) =>{
     if (!product) return res.status(404).json({message:"Producto no encontrado"});
     res.sendStatus(204);
 };
+const getProductsByBarcode = async (req, res) => {
+    const { search } = req.query;
+    if (!search) {
+        return res.status(400).json({ message: "Barcode query parameter is required" });
+    }
+    try{
+        
+        const products = await Product.findOne({
+            barcode: search , 
+        });
+        res.json(products);
+    } catch (error) {
+        console.error("Error fetching products by barcode:", error);
+        res.status(500).json({ message: "Error fetching products" });
+    }
+}
 
-module.exports = {getProducts,createProducts,getProduct,updateProducts,deleteProducts};
+
+module.exports = {getProducts,createProducts,getProduct,updateProducts,deleteProducts,getProductsByBarcode};
