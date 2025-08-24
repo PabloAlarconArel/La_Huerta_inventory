@@ -5,7 +5,6 @@ const inventorySchema = new mongoose.Schema({
     quantity: {type:Number,required:true},
     pricePack:{type:Number,required:true},
     expDate: {type:Date,default:Date.now,required:true},
-    lote: {type:Number, unique:true},
 },{
     timestamps:true
 })
