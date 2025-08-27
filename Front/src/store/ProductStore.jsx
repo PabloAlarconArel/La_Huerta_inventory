@@ -76,6 +76,7 @@ export const useProductStore = create((set,get) => ({
             const response = await axios.get(`${API_URL}/api/products/search?search=${searchTerm}`, {
                 withCredentials: true,
             });
+            console.log("response",response.data)
             return Array.isArray(response.data) ? response.data : [response.data];
         } catch (error) {
             set({ error: error.message});
@@ -86,7 +87,7 @@ export const useProductStore = create((set,get) => ({
 
     },
 
-    filteredProducts: () => {
+    filteredProducts:() => {
     const { products, search } = get();
     if (!search) return products;
     return products.filter((p) =>

@@ -23,7 +23,7 @@ export const useInventoryStore = create((set, get) => ({
             set({ error: error.message, isLoading: false });
         }
     },
-    addInventoryItem: async (newItem) => {
+    addInventory: async (newItem) => {
         set({ isLoading: true, error: null });
         try {
             const response = await axios.post(`${API_URL}/api/inventory`, newItem, {
@@ -37,7 +37,7 @@ export const useInventoryStore = create((set, get) => ({
             set({ error: error.message, isLoading: false });
         }
     },
-    updateInventoryItem: async (updatedItem) => {
+    updateInventory: async (updatedItem) => {
         set({ isLoading: true, error: null });
         try {
             const response = await axios.put(`${API_URL}/api/inventory/${updatedItem._id}`, updatedItem, {
@@ -53,7 +53,7 @@ export const useInventoryStore = create((set, get) => ({
             set({ error: error.message, isLoading: false });
         }
     },
-    deleteInventoryItem: async (itemId) => {
+    deleteInventory: async (itemId) => {
         set({ isLoading: true, error: null });
         try {
             await axios.delete(`${API_URL}/api/inventory/${itemId}`, {
@@ -68,14 +68,14 @@ export const useInventoryStore = create((set, get) => ({
         }
     },
     
-    filteredInventories: () => {
+    filteredInventories:() => {
     const { inventory, search } = get();
     if (!search) return inventory;
-    return inventory.filter((p) =>
 
-        Object.values(p).some((value) =>
-        String(value).toLowerCase().includes(search.toLowerCase()))
+    return inventory.filter((p) =>
+      Object.values({...p,...p.product}).some((value) =>
+      String(value).toLowerCase().includes(search.toLowerCase()))
     );
-    },
-    
+  },
+
 }));
