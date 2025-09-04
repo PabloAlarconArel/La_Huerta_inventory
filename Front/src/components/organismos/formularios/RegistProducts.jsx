@@ -61,7 +61,6 @@ export function RegistProduct({
       denyButtonText: `No guardar`,
       cancelButtonText:"Cancelar"
     }).then(async(result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed){ 
         await updateProduct(p);
         Swal.fire("Producto Registrado!", "", "success");

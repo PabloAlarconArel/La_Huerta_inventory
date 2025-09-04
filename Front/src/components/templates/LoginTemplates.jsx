@@ -1,27 +1,28 @@
 import styled from "styled-components";
-import{InputText2,Title,Btnsave} from "../../index.js";
+import{InputText2,Title,Btnsave,apiRequest} from "../../index.js";
 import{Device} from "../../styles/breakpoints";
-import axios from "axios";
-import { useState } from "react";  
+import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
+
 
 export function LoginTemplates(){
-    const [email,SetEmail]=useState("");
-    const[password,SetPassword]=useState("");
-    const handleLogin = async (e) => {
-        e.preventDefault();
 
-        try {
-            const res = await axios.post('http://localhost:3001/api/login',{
-                email: email,
-                password: password,
-            });
+    const navigate = useNavigate();
+    const {handleSubmit,register} = useForm()
 
-        localStorage.setItem('token', res.data.token);
-        alert('Login exitoso');
-    } catch (error){
-        alert('Error al iniciar sesión');
-    }
-    };
+    const handleLogin = handleSubmit(async (values)=>{
+        try{
+            const res = await apiRequest(values);
+            console.log("Token recibido:", res.data.token);
+            console.log(res.data.message);
+            localStorage.setItem("token", res.data.token);
+            navigate('/home');
+        }catch(error){
+            console.error(error);
+            alert('Error en el login');
+        }
+    });
+
     return(
         <Container>
             <span className="contentCard">
@@ -29,10 +30,10 @@ export function LoginTemplates(){
                 <Title>Iniciar Sesión</Title>
                 <form onSubmit={handleLogin}>
                     <InputText2>
-                        <input  className="form__field" placeholder="email" type="email" onChange={(e)=>SetEmail(e.target.value)}/>
+                        <input  className="form__field" placeholder="email" type="email" {...register("email",{required:true})}/>
                     </InputText2>
                     <InputText2>
-                        <input  className="form__field" placeholder="contraseña" type="password" onChange={(e)=>SetPassword(e.target.value)}/>
+                        <input  className="form__field" placeholder="contraseña" type="password" {...register("password",{required:true})} />
                     </InputText2>
                     <Btnsave titulo="INGRESAR" bgcolor="#1CB0F6" color="255,255,255" width="100%" type="submit"/>
                 </form>

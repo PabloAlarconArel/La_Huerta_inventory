@@ -12,7 +12,7 @@ import { TbBrandSupabase } from "react-icons/tb";
 import { FaReact } from "react-icons/fa";
 import { BsArrowDown, BsArrowUpShort } from "react-icons/bs";
 import { FaBalanceScale } from "react-icons/fa";
-import logo from "../assets/react.svg";
+import logo from "../assets/noto--tomato.svg";
 import { FcGoogle } from "react-icons/fc";
 
 import { RiCloseLine } from "react-icons/ri";
@@ -23,8 +23,8 @@ import { SlGraph } from "react-icons/sl";
 import { BsBarChartLine } from "react-icons/bs";
 import { AiOutlineCalculator } from "react-icons/ai";
 import { BsCalendarCheck } from "react-icons/bs";
-import {IoIosArrowForward} from "react-icons/io"
-
+import {IoIosArrowForward} from "react-icons/io";
+import { FaSearch } from "react-icons/fa";
 import {GrFormPrevious,GrCaretNext} from "react-icons/gr"
 import {MdOutlineBorderAll} from "react-icons/md"
 import { MdAlternateEmail } from "react-icons/md";
@@ -44,10 +44,18 @@ import { BsEmojiDizzy } from "react-icons/bs";
 import { FcImageFile } from "react-icons/fc";
 import { IoIosArrowBack } from "react-icons/io";
 import { GrAdd } from "react-icons/gr";
+import { IoTrashBinOutline } from "react-icons/io5";
+import { BsX } from "react-icons/bs";
+import { TiDelete } from "react-icons/ti";
+import { ImPlus } from "react-icons/im";
+import { FcSalesPerformance } from "react-icons/fc";
+import { FcMoneyTransfer } from "react-icons/fc";
 
 
 export const v = {
   iconoagregar:GrAdd,
+  iconobuscar:FaSearch,
+  iconoEliminar: TiDelete,
   iconoimagenvacia: FcImageFile,
   iconoemijivacio:BsEmojiDizzy,
   iconoreportes : TbReportAnalytics,
@@ -63,6 +71,11 @@ export const v = {
   icononombre:MdDriveFileRenameOutline,
   iconoemail:MdAlternateEmail,
   iconopass:RiLockPasswordLine,
+  iconoBasurero:IoTrashBinOutline,
+  iconoX:BsX,
+  iconoMonedas:FcSalesPerformance,
+  iconoBillete:FcMoneyTransfer,
+  iconoPlus:ImPlus,
   sidebarWidth: `300px`,
   sidebarWidthInitial: `10vw`,
   smSpacing: `8px`,
@@ -87,7 +100,7 @@ export const v = {
   bpbart: `48em`,
   bpmarge: `62em`,
   bphomer: `75em`,
-  colorPrincipal: `#00F34A`,
+  colorPrincipal: `#35d630`,
   boxshadowGray: `0px 10px 15px -3px rgba(0,0,0,0.1)`,
   iconoFlechabajo: IoIosArrowDown,
   iconocorona: RiVipCrownFill,
@@ -97,6 +110,7 @@ export const v = {
   iconofotovacia: FcPicture,
   verde: `#53B257`,
   rojo: `#F54E41`,
+  blanco:`#dddd`,
   agregar: CgMathPlus,
   iconosupabase: TbBrandSupabase,
   iconoreact: FaReact,

@@ -29,15 +29,16 @@ export function ProductTemplate(){
             />
             )}  
             <section >
+                <div className="area1">
                 <div className="title">
                 <Title>Productos</Title>
                 </div>
-                <div className="area1">
                 <Btnsave
                     funcion={nuevoRegistro}
                     bgcolor={v.colorPrincipal}
+                    color= {"blank"}
                     titulo="Nuevo"
-                    icono={<v.iconoagregar />}
+                    icono={<v.iconoPlus />}
                 />
                 </div>
             </section>
@@ -69,19 +70,20 @@ const Container = styled.div`
   .area1 {
     grid-area: area1;
     display: flex;
-    justify-content: end;
-    align-items: center;
     gap: 15px;
+    button {
+    margin-left: auto;
+   }
   }
   .area2 {
     grid-area: area2;
     display: flex;
-    justify-content: left;
-    align-items: left;
-    padding:15px 15px 15px 0;
+    justify-content:end;
+    align-items: end;
+    padding:15px 9px 15px 0;
   }
   .main {
     grid-area: main;
-    padding: 15px;
+    padding: 0px 0px 0px 40px;
   }
 `;

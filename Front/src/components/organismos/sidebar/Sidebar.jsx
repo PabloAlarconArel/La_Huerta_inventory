@@ -20,9 +20,9 @@ export function Sidebar({ state = false, setState }) {
       <Container $isopen={state.toString()} className={state ? "active" : "" }>
         <div className="Logocontent">
           <div className="imgcontent">
-            <img src={v.logo} />
+            <img src="noto--tomato.svg"/>
           </div>
-          <h2>Ada369 3.0</h2>
+          <h2>La Huerta</h2>
         </div>
         {LinksArray.map(({ icon, label, to }) => (
           <div
@@ -61,21 +61,6 @@ export function Sidebar({ state = false, setState }) {
             </NavLink>
           </div>
         ))}
-        <div className={state ? "LinkContainer active" : "LinkContainer"}>
-          <div className="Links">
-            <section className={state ? "content open" : "content"}>
-              <Icon
-                color="#CE82FF"
-                className="Linkicon"
-                icon="heroicons:ellipsis-horizontal-circle-solid"
-              />
-              <span className={state ? "label_ver" : "label_oculto"}>MÁS</span>
-            </section>
-          </div>
-         
-         
-        </div>
-
         <ToggleTema />
       </Container>
     </Main>

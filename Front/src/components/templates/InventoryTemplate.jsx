@@ -44,10 +44,10 @@ export function InventoryTemplate(){
             />
             )}  
             <section >
+                <div className="area1">
                 <div className="title">
                 <Title>Inventario</Title>
                 </div>
-                <div className="area1">
                 <Btnsave
                     funcion={nuevoRegistro}
                     bgcolor={v.colorPrincipal}
@@ -85,19 +85,20 @@ const Container = styled.div`
   .area1 {
     grid-area: area1;
     display: flex;
-    justify-content: end;
-    align-items: center;
     gap: 15px;
+    button {
+    margin-left: auto;
+  }
   }
   .area2 {
     grid-area: area2;
     display: flex;
-    justify-content: left;
+    justify-content: end;
     align-items: left;
     padding:15px 15px 15px 0;
   }
   .main {
     grid-area: main;
-    padding: 15px;
+    padding: 0px 15px 15px 40px;
   }
 `;

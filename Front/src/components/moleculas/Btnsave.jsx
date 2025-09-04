@@ -34,6 +34,7 @@ export function Btnsave({
 const Container = styled.button`
   font-weight: 700;
   display: flex;
+  color:white;
   font-size: 15px;
   padding: 10px 25px;
   border-radius: 16px;
