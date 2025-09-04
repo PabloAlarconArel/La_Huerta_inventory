@@ -29,6 +29,12 @@ mongoose.connect(process.env.MONGO_URI,{
 
 app.use("/api",require("./routes/auth"));
 app.use("/api",require("./routes/productRoute"));
+app.use("/api",require("./routes/inventoryRoute"));
+app.use("/api",require('./routes/saleRoute'));
+app.use((req, res, next) => {
+    console.log("➡️", req.method, req.originalUrl);
+    next();
+});
 
 
 app.listen(PORT, () => {

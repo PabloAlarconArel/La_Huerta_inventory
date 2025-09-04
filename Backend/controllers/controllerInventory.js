@@ -12,12 +12,13 @@ const getInventories = async (req, res) =>{
 };
 const createInventory = async (req, res) =>{
     try{
-        const{product,quantity,pricePack,expDate,lote}= req.body
+        const{product,quantityInitial,quantityAvailable,price,expDate}= req.body
     
         const newInventory = new Inventory({
                 product,
-                quantity,
-                pricePack,
+                quantityInitial,
+                quantityAvailable,
+                price,
                 expDate,
         })
         const savedInventory = await newInventory.save();
@@ -52,6 +53,7 @@ const deleteInventory = async (req, res) =>{
     if (!inventory) return res.status(404).json({message:"Inventario no encontrado"});
     res.sendStatus(204);
 };
+
 
 
 module.exports ={getInventories,createInventory,getInventory,updateInventory,deleteInventory};
