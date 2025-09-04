@@ -1,8 +1,9 @@
 const Sale = require("../models/Sales");
 const Inventory = require("../models/Inventory");
+const dayjs =require('dayjs')
 
 const getSales = async (req, res) =>{
-    const sale = await Sale.find()
+    const sale = await Sale.find().populate("products.product", "productName categories")
     res.json(sale)
 }
 const createSale = async (req,res)=>{
@@ -57,7 +58,7 @@ const createSale = async (req,res)=>{
         total += subtotal;
 
         saleProducts.push({
-            products : item.product,
+            product : item.product,
             quantity:item.quantity,
             price: item.price
 
@@ -77,7 +78,7 @@ const createSale = async (req,res)=>{
     }
 };
 const getSale = async (req, res) =>{
-    const sale= await Sale.findById(req.params.id)
+    const sale= await Sale.findById(req.params.id).populate("products.product", "productName categories")
     if (!sale) return res.status(404).json({message:"Venta no encontrada"});
     res.json(product)
 };
@@ -86,5 +87,14 @@ const deleteSales = async (req, res) =>{
     if (!sale) return res.status(404).json({message:"Venta no encontrada"});
     res.sendStatus(204);
 };
+const dateSale = async(req,res) =>{
+    const{init,end}=req.query;
+    const startDate = dayjs(init).startOf('day').toDate();
+    const endDate = dayjs(end).endOf('day').toDate();
+    const result = await Sale.find({
+        createdAt:{$gte:startDate, $lte:endDate}
+    }).populate("products.product", "productName categories");
+    res.json(result);
+}
 
-module.exports ={getSales,createSale,getSale,deleteSales}
+module.exports ={getSales,createSale,getSale,deleteSales,dateSale}
