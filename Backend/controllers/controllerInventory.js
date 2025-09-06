@@ -8,8 +8,16 @@ const getInventories = async (req, res) =>{
     } catch (error) {
     res.status(500).json({ message: "Error al obtener inventarios", error: error.message });
     }
-
 };
+const getInventoriesAvailable = async (req,res)=>{
+    try {
+    const inventories = await Inventory.find({quantityAvailable: { $gt: 0 }}).populate("product", "productName company categories barcode");
+    res.json(inventories);
+    } catch (error) {
+    res.status(500).json({ message: "Error al obtener inventarios", error: error.message });
+    }
+}
+
 const createInventory = async (req, res) =>{
     try{
         const{product,quantityInitial,quantityAvailable,price,expDate}= req.body
@@ -56,4 +64,4 @@ const deleteInventory = async (req, res) =>{
 
 
 
-module.exports ={getInventories,createInventory,getInventory,updateInventory,deleteInventory};
+module.exports ={getInventories,getInventoriesAvailable,createInventory,getInventory,updateInventory,deleteInventory};
