@@ -1,9 +1,10 @@
 const express = require("express")
 const router = express.Router()
 const authRequired= require("../middlewares/validateToken")
-const {getInventories,getInventory,createInventory,updateInventory,deleteInventory}= require("../controllers/controllerInventory")
+const {getInventories,getInventoriesAvailable,getInventory,createInventory,updateInventory,deleteInventory}= require("../controllers/controllerInventory")
 //const {createInventorySchema} = require ("../schemas/schemaInventory")
 
+router.get('/inventory/available',authRequired,getInventoriesAvailable)
 router.get('/inventory',authRequired,getInventories)
 router.get('/inventory/:id',authRequired,getInventory)
 router.post('/inventory',authRequired,createInventory)
