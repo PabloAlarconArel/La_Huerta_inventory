@@ -76,5 +76,5 @@ const TitleTypography = styled(Typography)(() => ({
 const SubtitleTypography = styled(Typography)(() => ({
       color: "#48bbb5",
       fontSize: "1.75rem",
-      fontWeight: 500,
+      fontWeight: 550,
 }));
