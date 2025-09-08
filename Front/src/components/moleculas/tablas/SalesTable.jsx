@@ -6,6 +6,13 @@ export function SalesTable({data,setList})
 
 
     const customStyles = {
+
+        table: {
+            style: {
+            width: "100%", 
+            },
+        },
+
         rows: {
             style: {
             fontSize: "12px",
@@ -39,6 +46,7 @@ export function SalesTable({data,setList})
     const columns = [
         {
             name: " ",
+
             cell: row => {
 
                     if (!row.productName || !row.priceUnity || !row.quantity) {
@@ -53,23 +61,26 @@ export function SalesTable({data,setList})
                     />);                                        
             },
             grow:0.2,
-            
+            width: "80px"
         },
         {
             name:"Cantidad",
             selector: row => row.quantity || "",
-            grow:0.5,
+            grow:0.3,
 
         },
         {
             name:"Código de Barras",
             selector: row => row.barcode || "",
-            grow:3,
+            grow:3.5,
+            wrap: true,
         },
         {
             name:"Nombre Producto",
             selector: row => row.productName?.charAt(0).toUpperCase() + row.productName?.slice(1)|| "",
-            grow:3,
+            grow:3.5,
+            wrap: true,
+
 
         },
         
@@ -114,6 +125,7 @@ export function SalesTable({data,setList})
             dense
             striped
             customStyles={customStyles}
+            responsive
         />
     );
 }

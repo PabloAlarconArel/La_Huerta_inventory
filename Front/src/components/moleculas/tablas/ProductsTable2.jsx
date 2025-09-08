@@ -135,11 +135,14 @@ export function ProductsTable2(
 		<DataTable
 			columns={columns}
 			data={data}
-            pagination	
+            pagination
+            paginationRowsPerPageOptions={[7, 14, 21, 28, 35]}	
+            paginationPerPage={7}
             paginationComponentOptions={paginationOptions}
             noDataComponent={<div>No hay Productos registrados</div>}	
             theme={theme === "light" ? "customLight" : "customDark"}
             customStyles={customStyles}
+            responsive
 		/>
 	);
 };
