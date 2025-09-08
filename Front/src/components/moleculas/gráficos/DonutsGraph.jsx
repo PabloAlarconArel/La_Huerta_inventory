@@ -16,8 +16,10 @@ export function DonutsGraph({ data }) {
   return acc;
 },{});
 
+ 
+
   return (
-    <GraphicCard title = "Categorias más vendidas" subtitle = "semana">
+    <GraphicCard title = "Categorías más vendidas" subtitle = "Semana">
     <Box sx={{ width: '100%' }}>
       <PieChart
         height={200}
@@ -29,13 +31,13 @@ export function DonutsGraph({ data }) {
                   value,
                   label,
                   })).slice(0,5),
-            innerRadius: 45,
+            innerRadius: 43,
             arcLabel: (params) => params.label ?? '',
             arcLabelStyle: {
               fontSize: 14,
               fontWeight: 'bold',
-              fill: '#333',    
-              fontFamily: 'Arial',
+              fill: '#e5fcfb',    
+              fontFamily: 'Roboto',
             },
             arcLabelMinAngle: 20,
             

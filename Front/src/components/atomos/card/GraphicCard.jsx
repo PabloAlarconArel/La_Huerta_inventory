@@ -9,7 +9,7 @@ export function GraphicCard({title,children,subtitle}) {
   const { theme } = useThemeStore();
   return (
     <StyledCard customtheme={theme}>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 0.4, mr: 1 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 0.3, mr: 1 }}>
           <TitleTypography variant="h5" >{title}</TitleTypography>
           <SubtitleTypography variant="body2" >{subtitle}</SubtitleTypography>
           <CardContent>
@@ -26,8 +26,8 @@ const StyledCard = styled(Card)(({theme, customtheme}) => ({
   borderRadius: 16,
   padding: 12,
   backgroundColor:customtheme === "light" ? "#e5fcfb" : "#373a3aff",
-  width:400,
-  height:290,
+  width:420,
+  height:"auto",
   boxShadow: "0 0 20px 0 rgba(0,0,0,0.12)",
   transition: "0.3s",
   "&:hover": {
