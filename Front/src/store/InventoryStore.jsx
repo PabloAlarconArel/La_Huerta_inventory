@@ -23,6 +23,19 @@ export const useInventoryStore = create((set, get) => ({
             set({ error: error.message, isLoading: false });
         }
     },
+    fetchAvailableInv: async () => {
+        set({ isLoading: true, error: null });
+        try {
+            const response = await axios.get(`${API_URL}/api/inventory/available`, {
+                withCredentials: true,
+            });
+            if (!response.data || response.datalength === 0){
+                return []};
+            return response.data;
+        } catch (error) {
+            set({ error: error.message, isLoading: false });
+        }
+    },
     addInventory: async (newItem) => {
         set({ isLoading: true, error: null });
         try {
