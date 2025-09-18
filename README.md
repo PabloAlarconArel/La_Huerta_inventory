@@ -1,7 +1,7 @@
 # La Huerta Inventory 
 ### Description
 
-This project is an inventory managment system used to controle La huerta's store product. 
+This project is an inventory management system used to controle La huerta's store product. 
 It helps store owners and employees track products, manage stock levels, prevent shortages, and show useful sales and inventory graphics.
 
 - 📦 **Product Management**: Add, update, and remove products of different categories (fruits, vegetables, bakery, beverages, etc.).  
