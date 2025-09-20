@@ -8,6 +8,7 @@ import {
 } from "../../../index";
 import { useForm } from "react-hook-form";
 import { useMutation,useQueryClient } from "@tanstack/react-query";
+import { Openfoodfacts } from "../../../api/Openfoodfacts";
 
 
 export function RegistProduct({
@@ -17,7 +18,7 @@ export function RegistProduct({
 }) {
   const queryClient = useQueryClient();
   const { addProduct, updateProduct } = useProductStore();
-  const {register,formState: { errors },handleSubmit,} = useForm({
+  const {register,formState: { errors },setValue,handleSubmit} = useForm({
     defaultValues: {
       barcode: dataSelect?.barcode || "",
       productName: dataSelect?.productName || "",
@@ -42,6 +43,15 @@ export function RegistProduct({
   const cerrarFormulario = () => {
     onClose();
   };
+
+  const buscarProducto = async(barcode) =>{
+    const data = await Openfoodfacts({ Barcode: barcode, estado: accion });
+    if(data){
+      setValue("productName",data.productName);
+      setValue("categories",data.categories.split(",")[0]);
+      setValue("company",data.company);
+    }
+  }
 
   async function insertar(data) {
     if (accion === "Editar") {
@@ -102,8 +112,9 @@ export function RegistProduct({
                 <label htmlFor="barcode">Código de barras :</label>
                 <InputText2 >
                   <input                     
-                      placeholder="Código de barras"
+                      
                       {...register("barcode", { required: true })}
+                      onBlur={(e) => buscarProducto(e.target.value)}
                   />
                       {errors.barcode && <span>Campo requerido</span>}
                 </InputText2>
@@ -112,17 +123,17 @@ export function RegistProduct({
                 <label htmlFor="productName"> Nombre del producto :</label>
                 <InputText2>
                   <input
-                      placeholder="Nombre del producto"
+                      
                       {...register("productName", { required: true })}
                   />
                       {errors.productName && <span>Campo requerido</span>}
                 </InputText2>
 
-
+                
                 <label htmlFor="categories">Categoría del producto :</label>
                 <InputText2>
                   <input
-                      placeholder="Categoría del producto"
+                      
                       {...register("categories", { required: true })}
                   />
                   {errors.categories && <span>Campo requerido</span>}
@@ -132,7 +143,7 @@ export function RegistProduct({
                 <label htmlFor="company">Empresa :</label>
                 <InputText2>
                   <input
-                      placeholder="Empresa"
+                      
                       {...register("company", { required: true })}
                   />
                   {errors.company && <span>Campo requerido</span>}
@@ -144,7 +155,7 @@ export function RegistProduct({
                 <InputText2>
                   <input
                       type="number"
-                      placeholder="Precio unidad"
+                      placeholder="0"
                       {...register("priceUnity", { required: true })}
                   />
                   {errors.priceUnity && <span>Campo requerido</span>}
@@ -178,14 +189,14 @@ const Container = styled.div`
   justify-content: center;
   z-index: 1000;
 
-  .sub-contenedor {
+    .sub-contenedor {
     position: relative;
     width: 500px;
     max-width: 85%;
     border-radius: 20px;
     background: ${({ theme }) => theme.bgtotal};
     box-shadow: -10px 15px 30px rgba(10, 9, 9, 0.4);
-    padding: 13px 36px 20px 36px;
+    padding: 13px 30px 20px 36px;
     z-index: 100;
 
     .headers {
@@ -210,29 +221,33 @@ const Container = styled.div`
     }
     .form-grid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:15px; 
+      grid-template-columns: 1fr;
+      gap: 5px; 
+      justify-items: start;
       max-width:500px;  
+      padding-left: 90px;
     }
     .form-grid label{
-      text-align:right;
-      padding-bottom:15px;
+      display:block;
+      font-size: 14px;
+      color: '#333';
     }
     .form-grid input{
+      width:70%;
+      padding:8px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline:none;
+      transition:border 0.3s;
     }
-    .formulario {
-      .form-subcontainer {
-        gap: 20px;
-        display: flex;
-        flex-direction: column;
-        .colorContainer {
-          .colorPickerContent {
-            padding-top: 15px;
-            min-height: 50px;
-          }
-        }
-      }
+    .form-grid input:focus{
+      border-color: #1d4ed8;
     }
+    .form-subcontainer button {
+      display: block;
+      margin: 10px auto 0; 
+    }
+
   }
 `;
 
